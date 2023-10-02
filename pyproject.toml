@@ -2,7 +2,7 @@
 name = "edr-pydantic-classes"
 description = "The Pydantic models for CoverageJSON"
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.8"
 license = {file = "LICENSE"}
 authors = [
     {name = "KNMI Data Platform Team", email = "opendata@knmi.nl"},
