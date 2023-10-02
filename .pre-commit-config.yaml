@@ -66,4 +66,4 @@ repos:
         additional_dependencies:
           - pydantic
           - covjson-pydantic
-          - python-dateutil
+          - types-python-dateutil
