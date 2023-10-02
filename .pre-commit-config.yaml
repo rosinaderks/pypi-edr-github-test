@@ -65,3 +65,5 @@ repos:
         pass_filenames: false
         additional_dependencies:
           - pydantic
+          - covjson-pydantic
+          - python-dateutil
