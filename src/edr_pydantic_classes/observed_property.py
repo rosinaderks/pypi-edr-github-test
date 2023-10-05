@@ -11,7 +11,7 @@ class Category(EDRBaseModel):
 
 
 class ObservedProperty(EDRBaseModel):
-    id: str = None
+    id: Optional[str] = None
     label: str
     description: Optional[str] = None
     categories: Optional[List[Category]] = None
