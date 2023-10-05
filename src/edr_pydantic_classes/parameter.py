@@ -1,23 +1,31 @@
+from __future__ import annotations
+
 from typing import Dict
 from typing import List
 from typing import Literal
 from typing import Optional
-from typing import Union
 
 from pydantic import model_validator
 
-from .my_base_model import MyBaseModel
+from .my_base_model import EDRBaseModel
 from .observed_property import ObservedProperty
 from .unit import Unit
 
 
-class Parameter(MyBaseModel, extra="allow"):
+class ParameterNames(EDRBaseModel):
+    parameter_names: Dict[str, Parameter]
+
+
+class Parameter(EDRBaseModel, extra="allow"):
     type: Literal["Parameter"] = "Parameter"
+    observedProperty: ObservedProperty  # noqa: N815
     id: Optional[str] = None
     label: Optional[str] = None
     description: Optional[str] = None
-    observedProperty: ObservedProperty  # noqa: N815
-    categoryEncoding: Optional[Dict[str, Union[int, List[int]]]] = None  # noqa: N815
+    # TODO no duplicates keys
+    # TODO int in list int should be unique
+    # TODO category encoding not in parameterobject, we don't use it??
+    # categoryEncoding: Optional[Dict[str, Union[int, List[int]]]] = None  # noqa: N815
     unit: Optional[Unit] = None
 
     @model_validator(mode="after")
@@ -31,7 +39,7 @@ class Parameter(MyBaseModel, extra="allow"):
         return self
 
 
-class ParameterGroup(MyBaseModel, extra="allow"):
+class ParameterGroup(EDRBaseModel, extra="allow"):
     type: Literal["ParameterGroup"] = "ParameterGroup"
     id: Optional[str] = None
     label: Optional[str] = None

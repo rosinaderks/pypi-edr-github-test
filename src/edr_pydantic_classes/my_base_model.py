@@ -1,8 +1,8 @@
-from pydantic import BaseModel
+from pydantic import BaseModel as PydanticBaseModel
 from pydantic import ConfigDict
 
 
-class MyBaseModel(BaseModel):
+class EDRBaseModel(PydanticBaseModel):
     model_config = ConfigDict(
         populate_by_name=True,
         str_strip_whitespace=True,

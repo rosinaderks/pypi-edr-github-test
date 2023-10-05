@@ -5,16 +5,16 @@ from typing import Optional
 
 from pydantic import Field
 
-from .generic_models import Link
-from .my_base_model import MyBaseModel
+from .link import Link
+from .my_base_model import EDRBaseModel
 
 
-class Provider(MyBaseModel):
-    name: str
+class Provider(EDRBaseModel):
+    name: Optional[str] = None
     url: Optional[str] = None
 
 
-class Contact(MyBaseModel):
+class Contact(EDRBaseModel):
     email: Optional[str] = None
     phone: Optional[str] = None
     fax: Optional[str] = None
@@ -27,9 +27,10 @@ class Contact(MyBaseModel):
     country: Optional[str] = None
 
 
-class LandingPageModel(MyBaseModel):
+class LandingPageModel(EDRBaseModel):
     links: List[Link] = Field(
         ...,
+        # TODO Do we want this example?
         example=[
             {
                 "href": "http://www.example.org/edr",
@@ -61,5 +62,5 @@ class LandingPageModel(MyBaseModel):
     contact: Optional[Contact] = None
 
 
-class ConformanceModel(MyBaseModel):
+class ConformanceModel(EDRBaseModel):
     conformsTo: List[str]  # noqa: N815
